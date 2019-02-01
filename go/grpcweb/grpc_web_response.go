@@ -109,6 +109,7 @@ func (w *grpcWebResponse) copyTrailersAndHeadersToWrapped() {
 			wrappedHeader.Add(k, v)
 		}
 	}
+	w.Header().Set("Content-Type", w.contentType)
 	w.writeCorsExposedHeaders()
 	w.wrapped.WriteHeader(http.StatusOK)
 	w.wrapped.(http.Flusher).Flush()
